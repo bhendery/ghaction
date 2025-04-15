@@ -8,6 +8,13 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+       - name: Dump GitHub context (for debugging)
+        run: |
+          echo "Repo owner: ${{ github.repository_owner }}"
+          echo "Repo name: ${{ github.event.repository.name }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Full GitHub context:"
+          echo '${{ toJson(github) }}'
       - name: Comment on the pull request
         uses: actions/github-script@v7
         with:
